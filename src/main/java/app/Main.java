@@ -36,7 +36,7 @@ public class Main {
 
                     post("/", ctx->{
                        PoemDTO incomingDog = ctx.bodyAsClass(PoemDTO.class);
-                       PoemDTO returnedDog = dogController.createDog(incomingDog);
+                       PoemDTO returnedDog = dogController.createPoem(incomingDog);
                        ctx.json(returnedDog);
                     });
 
