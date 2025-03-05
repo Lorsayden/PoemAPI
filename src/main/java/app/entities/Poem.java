@@ -25,6 +25,7 @@ public class Poem
 
     String style;
 
+    @Column(columnDefinition = "TEXT")
     String poem;
 
     public Poem(String title, String style, String poem, Author author){
