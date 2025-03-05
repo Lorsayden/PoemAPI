@@ -1,11 +1,17 @@
 package app.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
+
+@DynamicUpdate
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Builder
+@ToString
+@Entity
 public class Poem
 {
 
