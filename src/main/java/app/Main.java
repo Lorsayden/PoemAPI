@@ -14,39 +14,39 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PoemController dogController = new PoemController();
+        PoemController poemController = new PoemController();
 
         Javalin app = Javalin.create(config -> {
             config.router.contextPath = "/api";
             config.router.apiBuilder(() -> {
-                path("dog", () -> {
+                path("poem", () -> {
 
-                    get("/", ctx -> ctx.json(dogController.getAll()));
+                    get("/", ctx -> ctx.json(poemController.getAll()));
                     //get("/demo", ctx -> ctx.result("This is the demo endpoint!"));
 
                     get("/{id}", ctx -> {
                         try{
-                            PoemDTO dog = dogController.getById(Integer.parseInt(ctx.pathParam("id")));
-                            ctx.json(dog);
+                            PoemDTO poem = poemController.getById(Integer.parseInt(ctx.pathParam("id")));
+                            ctx.json(poem);
                         } catch (Exception ex){
-                            ErrorMessage error = new ErrorMessage("No dog with that id");
+                            ErrorMessage error = new ErrorMessage("No poem with that id");
                             ctx.status(404).json(error);
                         }
                     });
 
                     post("/", ctx->{
-                       PoemDTO incomingDog = ctx.bodyAsClass(PoemDTO.class);
-                       PoemDTO returnedDog = dogController.createPoem(incomingDog);
-                       ctx.json(returnedDog);
+                       PoemDTO incomingPoem = ctx.bodyAsClass(PoemDTO.class);
+                       PoemDTO returnedPoem = poemController.createPoem(incomingPoem);
+                       ctx.json(returnedPoem);
                     });
 
                     /*put("/{id}", ctx->{
                         int id = Integer.parseInt(ctx.pathParam("id"));
-                        DogDTO incommingDog = ctx.bodyAsClass(DogDTO.class);
-                        for(int i = 0; i < dogs.size(); i++){
-                            if(dogs.get(i).getId() == id){
-                                incommingDog.setId(id);
-                                dogs.set(i, incommingDog);
+                        DogDTO incommingPoem = ctx.bodyAsClass(PoemDTO.class);
+                        for(int i = 0; i < poems.size(); i++){
+                            if(poems.get(i).getId() == id){
+                                incommingPoem.setId(id);
+                                poems.set(i, incommingPoem);
                             }
                         }
                         ctx.json(dogs.get(id - 1));
