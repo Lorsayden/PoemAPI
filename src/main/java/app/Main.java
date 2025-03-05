@@ -1,18 +1,9 @@
 package app;
 
-import app.controllers.DogController;
-import app.dtos.DogDTO;
+import app.controllers.PoemController;
+import app.dtos.PoemDTO;
 import app.dtos.ErrorMessage;
 import io.javalin.Javalin;
-import jdk.jfr.DataAmount;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.eclipse.jetty.servlet.ErrorPageErrorHandler;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -23,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DogController dogController = new DogController();
+        PoemController dogController = new PoemController();
 
         Javalin app = Javalin.create(config -> {
             config.router.contextPath = "/api";
@@ -35,7 +26,7 @@ public class Main {
 
                     get("/{id}", ctx -> {
                         try{
-                            DogDTO dog = dogController.getById(Integer.parseInt(ctx.pathParam("id")));
+                            PoemDTO dog = dogController.getById(Integer.parseInt(ctx.pathParam("id")));
                             ctx.json(dog);
                         } catch (Exception ex){
                             ErrorMessage error = new ErrorMessage("No dog with that id");
@@ -44,8 +35,8 @@ public class Main {
                     });
 
                     post("/", ctx->{
-                       DogDTO incomingDog = ctx.bodyAsClass(DogDTO.class);
-                       DogDTO returnedDog = dogController.createDog(incomingDog);
+                       PoemDTO incomingDog = ctx.bodyAsClass(PoemDTO.class);
+                       PoemDTO returnedDog = dogController.createDog(incomingDog);
                        ctx.json(returnedDog);
                     });
 

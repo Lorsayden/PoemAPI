@@ -1,21 +1,21 @@
 package app.controllers;
 
-import app.dtos.DogDTO;
+import app.dtos.PoemDTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DogController {
+public class PoemController {
 
-    private static List<DogDTO> dogs = new ArrayList<>(Arrays.asList(
-            new DogDTO(1, "Fido", "Puddel", 'M', 3),
-            new DogDTO(2, "Melia", "Labrador", 'F', 5),
-            new DogDTO(3, "Shep", "Schaefer", 'M', 6)
+    private static List<PoemDTO> dogs = new ArrayList<>(Arrays.asList(
+            new PoemDTO(1, "Fido", "Puddel", 'M', 3),
+            new PoemDTO(2, "Melia", "Labrador", 'F', 5),
+            new PoemDTO(3, "Shep", "Schaefer", 'M', 6)
     ));
 
 
-    public DogDTO getById(int id) throws Exception{
+    public PoemDTO getById(int id) throws Exception{
         try{
             dogs.get(id);
         } catch (IndexOutOfBoundsException ex){
@@ -25,16 +25,16 @@ public class DogController {
         return dogs.get(id);
     }
 
-    public List<DogDTO> getAll(){
+    public List<PoemDTO> getAll(){
         return dogs;
     }
 
-    public DogDTO setDog(int id, DogDTO dog){
+    public PoemDTO setDog(int id, PoemDTO dog){
         dogs.set(id, dog);
         return dog;
     }
 
-    public DogDTO createDog(DogDTO dog){
+    public PoemDTO createDog(PoemDTO dog){
         int id = dogs.size() + 1;
         dog.setId(id);
         dogs.add(dog);
