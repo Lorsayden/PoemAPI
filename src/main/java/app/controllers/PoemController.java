@@ -15,7 +15,7 @@ public class PoemController {
     static Author author3 = new Author("ChatGPT");
 
     private static List<PoemDTO> poems = new ArrayList<>(Arrays.asList(
-            new PoemDTO(1, "The Codeborn Sage", "Epic", "Upon the land where circuits hum,\n" +
+            new PoemDTO("The Codeborn Sage", "Epic", "Upon the land where circuits hum,\n" +
                     "A scholar rose, both wise and young.\n" +
                     "His locks, like fire, in crimson flared,\n" +
                     "Behind his glasses, keen eyes stared.\n" +
@@ -49,7 +49,7 @@ public class PoemController {
                     "Through midnight toil, through mind reborn.\n" +
                     "For in the world of code untamed,\n" +
                     "The brightest stars burn through the frame.", author1),
-            new PoemDTO(2, "The Beard of Code Eternal", "Epic", "In ages past, when knowledge slept,\n" +
+            new PoemDTO("The Beard of Code Eternal", "Epic", "In ages past, when knowledge slept,\n" +
                     "A child was born where bright minds wept.\n" +
                     "With fire-red locks and vision keen,\n" +
                     "He saw the world in lines unseen.\n" +
@@ -93,7 +93,7 @@ public class PoemController {
                     "Of he whose whiskers still achieved.\n" +
                     "A legend vast, a truth well-spun,\n" +
                     "The Beard of Code—forever won!", author1),
-            new PoemDTO(3, "Candy, The Golden Heart", "Epic", "Sing, O Muse, of the noble hound,\n" +
+            new PoemDTO("Candy, The Golden Heart", "Epic", "Sing, O Muse, of the noble hound,\n" +
                     "Whose golden light did long abound.\n" +
                     "Through thirteen years, so brave, so true,\n" +
                     "She walked the path the fateful knew.\n" +
@@ -127,7 +127,7 @@ public class PoemController {
                     "Shall feel her warmth in dream and night.\n" +
                     "For Candy’s soul was made of gold,\n" +
                     "And legends, thus, are never old.", author1),
-            new PoemDTO(4, "The Shattered Crown (On America’s Chaos)", "Epic", "O land once bright, now dimmed with strife,\n" +
+            new PoemDTO("The Shattered Crown (On America’s Chaos)", "Epic", "O land once bright, now dimmed with strife,\n" +
                     "Where echoes clash in endless life.\n" +
                     "A kingdom vast, with banners torn,\n" +
                     "Once hailed in pride, now lost, forlorn.\n" +
@@ -156,7 +156,7 @@ public class PoemController {
                     "There still may rise a beacon’s light.\n" +
                     "A land once great, once strong, once free—\n" +
                     "Shall it remain, or cease to be?", author2),
-            new PoemDTO(5, "The Last Coffee Bean", "Epic", "Beneath the sky so dark, so deep,\n" +
+            new PoemDTO("The Last Coffee Bean", "Epic", "Beneath the sky so dark, so deep,\n" +
                     "A bitter fate began to creep.\n" +
                     "The morning air, so bleak, so mean—\n" +
                     "For lo! There lay one coffee bean.\n" +
@@ -178,7 +178,7 @@ public class PoemController {
                     "\n" +
                     "So learn, dear soul, from this dark tale:\n" +
                     "Stock thy beans, lest taste should pale!", author3),
-            new PoemDTO(6, "The Duck Who Refused To Paddle", "Epic", "The Duck Who Refused to Paddle\n" +
+            new PoemDTO("The Duck Who Refused To Paddle", "Epic", "The Duck Who Refused to Paddle\n" +
                     "Upon the lake, so calm, so wide,\n" +
                     "One duck declared, “I shall not glide!”\n" +
                     "“My feet shall rest, my wings stay tight,\n" +
@@ -201,7 +201,7 @@ public class PoemController {
                     "\n" +
                     "So hear this tale, ye swift, ye bold:\n" +
                     "Not all who move are wise or gold.", author3),
-            new PoemDTO(7, "The Orange King's Folly", "Epic", "Upon a throne of marble white,\n" +
+            new PoemDTO("The Orange King's Folly", "Epic", "Upon a throne of marble white,\n" +
                     "There sat a fool bathed in light.\n" +
                     "His face, a hue of burnished flame,\n" +
                     "His words—a jest, a hollow claim.\n" +
