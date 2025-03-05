@@ -1,0 +1,24 @@
+GET localhost:7070/api/dog
+
+
+###
+POST localhost:7070/api/dog
+Content-Type: application/json
+
+{
+    "name": "Hanna",
+    "breed": "qerty",
+    "gender": "F",
+    "age": 4
+}
+
+###
+PUT localhost:7070/api/dog/3
+Content-Type: application/json
+
+{
+    "name": "Lasse",
+    "breed": "gud",
+    "gender": "M",
+    "age": 35
+}
