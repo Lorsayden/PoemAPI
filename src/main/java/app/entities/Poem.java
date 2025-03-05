@@ -19,4 +19,6 @@ public class Poem
     @ManyToOne
     private Author author;
 
+    String poem;
+
 }
