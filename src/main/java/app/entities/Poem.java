@@ -1,5 +1,9 @@
 package app.entities;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Setter;
 
 public class Poem
@@ -13,7 +17,7 @@ public class Poem
     @Setter
     String title;
 
-    String style = ENUM;
+    String style;
 
     @Setter
     @ManyToOne

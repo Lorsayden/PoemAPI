@@ -1,6 +1,8 @@
 package app.entities;
 
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Set;
 
@@ -24,4 +26,8 @@ public class Author
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Poem> poems;
 
+    public Author(String name)
+    {
+        this.name = name;
+    }
 }
