@@ -3,7 +3,7 @@ package app.dao.impl;
 import app.dao.IDAO;
 import app.entities.Author;
 import app.entities.Poem;
-import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -31,30 +31,83 @@ public class PoemDAO implements IDAO<Poem,Integer>
     @Override
     public Poem create(Poem poem)
     {
-        return null;
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(poem);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return poem;
     }
 
     @Override
-    public Poem read(Integer i)
+    public Poem read(Integer id)
     {
-        return null;
+        EntityManager em = emf.createEntityManager();
+        Poem poem = null;
+        try {
+            Query query = em.createQuery("SELECT p FROM Poem p WHERE p.id = :id");
+            query.setParameter("id", id);
+            return (Poem) query.getSingleResult();
+        } catch (NoResultException e){
+            return null;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public List<Poem> readAll()
     {
-        return List.of();
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Poem> query = em.createQuery("SELECT p FROM Poem p", Poem.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public Poem update(Poem type)
-    {
-        return null;
+    public Poem update(Poem poem) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            Query query = em.createQuery("UPDATE Poem p SET p.title = :title, p.style = :style, p.author = :author, p.poem = :poem WHERE p.id = :id");
+            query.setParameter("title", poem.getTitle());
+            query.setParameter("style", poem.getStyle());
+            query.setParameter("author", poem.getAuthor());
+            query.setParameter("poem", poem.getPoem());
+            query.setParameter("id", poem.getId());
+
+            query.executeUpdate();
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return poem;
     }
 
-    @Override
-    public void delete(Integer i)
-    {
 
+    @Override
+    public void delete(Integer id)
+    {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            Query query = em.createQuery("DELETE FROM Poem p WHERE p.id = :id");
+            query.setParameter("id", id);
+
+            query.executeUpdate();
+
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 }
