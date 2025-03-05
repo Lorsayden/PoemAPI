@@ -1,20 +1,28 @@
 package app;
 
+import app.config.HibernateConfig;
 import app.controllers.PoemController;
 import app.dtos.PoemDTO;
 import app.dtos.ErrorMessage;
+import app.entities.Poem;
 import io.javalin.Javalin;
+import jakarta.persistence.EntityManagerFactory;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class Main {
 
 
+
     //get("/{id}", ctx -> ctx.result("This is the demo endpoint with ID " + ctx.pathParam("id")));
 
     public static void main(String[] args) {
 
+        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+
         PoemController poemController = new PoemController();
+
+        poemController.savePoemsToDatabase(emf);
 
         Javalin app = Javalin.create(config -> {
             config.router.contextPath = "/api";
@@ -22,11 +30,10 @@ public class Main {
                 path("poem", () -> {
 
                     get("/", ctx -> ctx.json(poemController.getAll()));
-                    //get("/demo", ctx -> ctx.result("This is the demo endpoint!"));
 
                     get("/{id}", ctx -> {
                         try{
-                            PoemDTO poem = poemController.getById(Integer.parseInt(ctx.pathParam("id")));
+                            PoemDTO poem = poemController.getById(Integer.parseInt(ctx.pathParam("id")),emf);
                             ctx.json(poem);
                         } catch (Exception ex){
                             ErrorMessage error = new ErrorMessage("No poem with that id");
@@ -36,7 +43,7 @@ public class Main {
 
                     post("/", ctx->{
                        PoemDTO incomingPoem = ctx.bodyAsClass(PoemDTO.class);
-                       PoemDTO returnedPoem = poemController.createPoem(incomingPoem);
+                       Poem returnedPoem = poemController.createPoemFromDTO(incomingPoem, emf);
                        ctx.json(returnedPoem);
                     });
 

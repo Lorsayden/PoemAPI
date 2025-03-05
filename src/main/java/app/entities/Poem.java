@@ -25,10 +25,18 @@ public class Poem
 
     String style;
 
+    String poem;
+
+    public Poem(String title, String style, String poem, Author author){
+        this.title = title;
+        this.style = style;
+        this.poem = poem;
+        this.author = author;
+    }
+
     @Setter
     @ManyToOne
     private Author author;
 
-    String poem;
 
 }
