@@ -22,4 +22,10 @@ public class PoemDTO {
         this.poem = poem;
         this.author = author;
     }
+
+    public PoemDTO(String title, String style, String poem) {
+        this.title = title;
+        this.style = style;
+        this.poem = poem;
+    }
 }
