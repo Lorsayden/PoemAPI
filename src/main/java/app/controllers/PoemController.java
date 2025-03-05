@@ -254,9 +254,15 @@ public class PoemController
         }
     }
 
-    public List<Poem> getAll()
+    public List<PoemDTO> getAll(EntityManagerFactory emf)
     {
-        return poems;
+        List<Poem> poems = PoemDAO.getInstance(emf).readAll();
+        List<PoemDTO> poemDTOS = new ArrayList<>();
+        for(Poem poem : poems){
+            PoemDTO poemDTO = createDTOFromPoem(poem,emf);
+            poemDTOS.add(poemDTO);
+        }
+        return poemDTOS;
     }
 
     public Poem setPoem(int id, Poem poem)
@@ -276,4 +282,6 @@ public class PoemController
         PoemDTO poemDTO = new PoemDTO(poem.getId(), poem.getTitle(), poem.getStyle(), poem.getPoem(), poem.getAuthor());
         return poemDTO;
     }
+
+
 }

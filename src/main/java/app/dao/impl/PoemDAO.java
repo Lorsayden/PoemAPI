@@ -3,6 +3,7 @@ package app.dao.impl;
 import app.dao.IDAO;
 import app.entities.Author;
 import app.entities.Poem;
+import app.exceptions.ApiException;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -72,10 +73,13 @@ public class PoemDAO implements IDAO<Poem,Integer>
         try {
             TypedQuery<Poem> query = em.createQuery("SELECT p FROM Poem p", Poem.class);
             return query.getResultList();
+        } catch(Exception e){
+            throw new ApiException(401, "Error finding poems");
         } finally {
             em.close();
         }
     }
+
 
     @Override
     public Poem update(Poem poem) {

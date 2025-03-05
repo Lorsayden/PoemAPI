@@ -2,6 +2,7 @@ package app;
 
 import app.config.HibernateConfig;
 import app.controllers.PoemController;
+import app.dao.impl.PoemDAO;
 import app.dtos.PoemDTO;
 import app.dtos.ErrorMessage;
 import app.entities.Poem;
@@ -22,14 +23,15 @@ public class Main {
 
         PoemController poemController = new PoemController();
 
-        poemController.savePoemsToDatabase(emf);
+        //Only used the first time you run the program
+        // poemController.savePoemsToDatabase(emf);
 
         Javalin app = Javalin.create(config -> {
             config.router.contextPath = "/api";
             config.router.apiBuilder(() -> {
                 path("poem", () -> {
 
-                    get("/", ctx -> ctx.json(poemController.getAll()));
+                    get("/", ctx -> ctx.json(poemController.getAll(emf)));
 
                     get("/{id}", ctx -> {
                         try{
@@ -47,7 +49,16 @@ public class Main {
                        ctx.json(returnedPoem);
                     });
 
-                    /*put("/{id}", ctx->{
+                });
+            });
+        });
+        app.start(7070);
+    }
+}
+
+
+
+/*put("/{id}", ctx->{
                         int id = Integer.parseInt(ctx.pathParam("id"));
                         DogDTO incommingPoem = ctx.bodyAsClass(PoemDTO.class);
                         for(int i = 0; i < poems.size(); i++){
@@ -58,9 +69,3 @@ public class Main {
                         }
                         ctx.json(dogs.get(id - 1));
                     });*/
-                });
-            });
-        });
-        app.start(7070);
-    }
-}
