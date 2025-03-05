@@ -1,5 +1,6 @@
 package app.dtos;
 
+import app.entities.Author;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,12 @@ public class PoemDTO {
     String title;
     String style;
     String poem;
-    AuthorDTO authorDTO;
+    Author author;
 
-    public PoemDTO(String title, String style, String poem, AuthorDTO authorDTO) {
+    public PoemDTO(String title, String style, String poem, Author author) {
         this.title = title;
         this.style = style;
         this.poem = poem;
-        this.authorDTO = authorDTO;
+        this.author = author;
     }
 }
