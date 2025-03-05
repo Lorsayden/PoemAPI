@@ -32,6 +32,13 @@ public class PoemDAO implements IDAO<Poem,Integer>
     public Poem create(Poem poem)
     {
         EntityManager em = emf.createEntityManager();
+
+        if (poem.getAuthor() != null && poem.getAuthor().getId() == null) {
+            em.persist(poem.getAuthor());  // Save the Author first
+        } else if (poem.getAuthor() != null) {
+            poem.setAuthor(em.find(Author.class, poem.getAuthor().getId())); // Attach an existing Author
+        }
+
         try {
             em.getTransaction().begin();
             em.persist(poem);
