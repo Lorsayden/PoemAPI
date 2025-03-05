@@ -1,24 +1,22 @@
-GET localhost:7070/api/dog
+GET localhost:7070/api/poem
 
 
 ###
-POST localhost:7070/api/dog
+POST localhost:7070/api/poem
 Content-Type: application/json
 
 {
-    "name": "Hanna",
-    "breed": "qerty",
-    "gender": "F",
-    "age": 4
+  "title": "Mr. Girth",
+  "style": "epic",
+  "poem": "Sing O grand muse, sing as thy life depended on the..."
 }
 
 ###
-PUT localhost:7070/api/dog/3
+PUT localhost:7070/api/poem/3
 Content-Type: application/json
 
 {
-    "name": "Lasse",
-    "breed": "gud",
-    "gender": "M",
-    "age": 35
+  "title": "Mr. Girth",
+  "style": "epic",
+  "poem": "Sing O grand muse, sing as thy life depended on the..."
 }
